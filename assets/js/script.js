@@ -14,6 +14,7 @@ var response = fetch(apiurl)
         var date = event.getMonth() + ", " + event.getDate() + ", " + event.getFullYear()
         var lon = data.coord.lon
         var lat = data.coord.lat
+        myForecast(lon, lat)
         var pic = data.weather[0].icon
         var temp = data.main.temp
         var wind = data.wind.speed
@@ -21,7 +22,7 @@ var response = fetch(apiurl)
         var city = data.name
         var html = `
         <div class= "col-12">
-        <p>${city}, ${date} </p>
+        <p>${city}, (${date}) </p>
         <p>
         <img src="http://openweathermap.org/img/wn/${pic}.png"
         alt= "Weather Icon" />
@@ -33,14 +34,34 @@ var response = fetch(apiurl)
         `
 
         listEl.innerHTML = html
-        console.log(data);
     })
 
     .catch(function (error) {
         console.log(error)
     });
 
-var response = fetch(apiurl2)
-    .then(function (response) {
-        return response.json();
-    })
+function myForecast(longitude, latitude) {
+    let apikeycode = `https://api.openweathermap.org/data/2.5/onecall?appid=16da2c71dd8c2c76dfce15f0f75a5dea&lat=${latitude}&lon=${longitude}`
+    var response = fetch(apikeycode)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            for (let i = 0; i < data.daily.length; i++) {
+                var day = data.daily[i]
+                const event = new Date(day.dt);
+                var date = event.getMonth() + ", " + event.getDate() + ", " + event.getFullYear()
+                let temp = day.temp.day
+                let wind = day.wind_speed
+                let hum = day.humidity
+                let pic = day.weather[0].icon
+                let html = `
+                
+            `
+            }
+            console.log(data);
+        })
+
+};
+
+
