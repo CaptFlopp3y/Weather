@@ -1,0 +1,50 @@
+#forecast {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 15px;
+}
+
+.header {
+    font-size: xxx-large;
+    text-align: right;
+    padding-right: 125px;
+    background-image: linear-gradient(144deg, #5B42F3, #00DDEB 50%, #AF40FF);
+    color: white;
+}
+
+.container .row {
+    display: grid;
+    justify-content: start;
+}
+
+#myData {
+    display: grid;
+    justify-content: space-around;
+    box-shadow: 3px 3px 15px black;
+    font-style: italic;
+    font-size: xx-large;
+    font-family: auto;
+    background-color: #bf80ff;
+}
+
+#forecast .day {
+    background-color: #00ffff;
+    display: grid;
+    justify-items: center;
+    font-size: x-large;
+    font-style: oblique;
+    font-weight: 500;
+    width: 225px;
+    box-shadow: 3px 3px 15px black;
+}
+
+.ForecastTittle {
+    display: block;
+    background-image: linear-gradient(144deg, #5B42F3, #0094eb 50%, #AF40FF);
+    margin: 15px;
+    width: 200px;
+    padding: 6px;
+    box-shadow: 3px 3px 15px black;
+    color: ghostwhite;
+}

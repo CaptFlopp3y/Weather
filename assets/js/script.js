@@ -11,7 +11,7 @@ var response = fetch(apiurl)
 
     .then(function (data) {
         const event = new Date();
-        var date = (event.getMonth() + 1) + ", " + event.getDate() + ", " + event.getFullYear()
+        var date = (event.getMonth() + 1) + "/ " + event.getDate() + "/ " + event.getFullYear()
         var lon = data.coord.lon
         var lat = data.coord.lat
         myForecast(lon, lat)
@@ -51,14 +51,14 @@ function myForecast(longitude, latitude) {
             for (let i = 1; i < 6; i++) {
                 var day = data.daily[i]
                 const event = new Date(day.dt * 1000);
-                var date = (event.getMonth() + 1) + ", " + event.getDate() + ", " + event.getFullYear()
+                var date = (event.getMonth() + 1) + "/ " + event.getDate() + "/ " + event.getFullYear()
                 let temp = day.temp.day
                 let wind = day.wind_speed
                 let hum = day.humidity
                 let pic = day.weather[0].icon
                 let html = `
                 <div class = "day">
-                <p>(${date})</p>
+                <p>${date}</p>
                 <p>
                 <img src="http://openweathermap.org/img/wn/${pic}.png"
                 alt= "Weather Icon" />
