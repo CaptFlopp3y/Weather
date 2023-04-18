@@ -2,6 +2,7 @@ var apiurl = "https://api.openweathermap.org/data/2.5/weather?q=salt lake city&a
 var apiurl2 = "https://api.openweathermap.org/data/2.5/onecall?appid=16da2c71dd8c2c76dfce15f0f75a5dea&lat=40.7608&lon=-111.8911"
 var listEl = document.getElementById("myData")
 var listE2 = document.getElementById("forecast")
+var searchBtn = document.getElementById("search")
 
 
 var response = fetch(apiurl)
@@ -32,6 +33,7 @@ var response = fetch(apiurl)
         <p>Humidity: ${hum}%</p>
         </div>
         `
+
 
         listEl.innerHTML = html
     })
@@ -76,5 +78,58 @@ function myForecast(longitude, latitude) {
         })
 
 };
+function searchCity(city) {
+    let Citynames = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=55005b98484cc48d65537d2a2b526975`
+    fetch(Citynames)
+        .then(function (response) {
+            return response.json();
+        })
+
+        .then(function (data) {
+            const event = new Date();
+            var date = (event.getMonth() + 1) + "/ " + event.getDate() + "/ " + event.getFullYear()
+            var lon = data.coord.lon
+            var lat = data.coord.lat
+            myForecast(lon, lat)
+            var pic = data.weather[0].icon
+            var temp = data.main.temp
+            var wind = data.wind.speed
+            var hum = data.main.humidity
+            var city = data.name
+            var html = `
+            <div class= "col-12">
+            <p>${city}, (${date}) </p>
+            <p>
+            <img src="http://openweathermap.org/img/wn/${pic}.png"
+            alt= "Weather Icon" />
+            </p>
+            <p>Temp: ${temp} </p>
+            <p>Wind: ${wind} MPH</p>
+            <p>Humidity: ${hum}%</p>
+            </div>
+            `
 
 
+            listEl.innerHTML = html
+        })
+
+        .catch(function (error) {
+            console.log(error)
+        });
+}
+
+searchBtn.addEventListener("click", function () {
+    var Cinput = document.getElementById("CityInput").value
+    console.log(Cinput)
+    searchCity(Cinput)
+    let cities = []
+    let history = localStorage.getItem("cities")
+    if (
+        history != null
+    ) {
+        let data = JSON.parse(history)
+        cities = data
+    }
+    cities.push(Cinput)
+    localStorage.setItem("cities", JSON.stringify(cities))
+})
