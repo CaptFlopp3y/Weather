@@ -1,3 +1,7 @@
+#body {
+    background-color: #80b3ff;
+}
+
 #forecast {
     display: flex;
     flex-direction: row;
@@ -60,12 +64,22 @@
 }
 
 .row {
-    display: grid;
-    justify-content: start;
+    /* display: grid;
+    justify-content: start; */
     background-color: lightgrey;
     position: absolute;
     left: auto;
     width: 332px;
     height: 396px;
     border: 5px solid blue;
+}
+
+.col-sm-4 {
+    display: block;
+    background-image: linear-gradient(144deg, #5B42F3, #0094eb 50%, #AF40FF);
+    margin: 13px;
+    width: 294px;
+    padding: 17px;
+    box-shadow: 3px 3px 15px black;
+    color: ghostwhite;
 }

@@ -28,7 +28,7 @@ var response = fetch(apiurl)
         <img src="http://openweathermap.org/img/wn/${pic}.png"
         alt= "Weather Icon" />
         </p>
-        <p>Temp: ${temp} </p>
+        <p>Temp: ${temp.toFixed(2)}&deg;F </p>
         <p>Wind: ${wind} MPH</p>
         <p>Humidity: ${hum}%</p>
         </div>
@@ -54,7 +54,7 @@ function myForecast(longitude, latitude) {
                 var day = data.daily[i]
                 const event = new Date(day.dt * 1000);
                 var date = (event.getMonth() + 1) + "/ " + event.getDate() + "/ " + event.getFullYear()
-                let temp = day.temp.day
+                let temp = (day.temp.day - 273.15) * 9 / 5 + 32
                 let wind = day.wind_speed
                 let hum = day.humidity
                 let pic = day.weather[0].icon
@@ -65,7 +65,7 @@ function myForecast(longitude, latitude) {
                 <img src="http://openweathermap.org/img/wn/${pic}.png"
                 alt= "Weather Icon" />
                 </p>
-                <p>Temp: ${temp} </p>
+                <p>Temp: ${temp.toFixed(2)}&deg;F </p>
                  <p>Wind: ${wind} MPH</p>
                  <p>Humidity: ${hum}%</p>
                 </div>
@@ -92,7 +92,7 @@ function searchCity(city) {
             var lat = data.coord.lat
             myForecast(lon, lat)
             var pic = data.weather[0].icon
-            var temp = data.main.temp
+            var temp = (data.main.temp - 273.15) * 9 / 5 + 32
             var wind = data.wind.speed
             var hum = data.main.humidity
             var city = data.name
@@ -103,7 +103,7 @@ function searchCity(city) {
             <img src="http://openweathermap.org/img/wn/${pic}.png"
             alt= "Weather Icon" />
             </p>
-            <p>Temp: ${temp} </p>
+            <p>Temp: ${temp.toFixed(2)}&deg;F </p>
             <p>Wind: ${wind} MPH</p>
             <p>Humidity: ${hum}%</p>
             </div>
@@ -132,6 +132,17 @@ searchBtn.addEventListener("click", function () {
     }
     cities.push(Cinput)
     localStorage.setItem("cities", JSON.stringify(cities))
+    citysearch.innerHTML = " "
+    for (let i = 0; i < cities.length; i++) {
+        let city = document.createElement("div")
+        city.innerHTML = cities[i]
+        city.addEventListener(
+            'click', function () {
+                searchCity(cities[i])
+            }
+        )
+        citysearch.appendChild(city)
+    }
 })
 
 window.addEventListener("load", (event) => {
