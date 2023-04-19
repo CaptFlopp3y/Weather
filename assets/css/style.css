@@ -13,10 +13,6 @@
     color: white;
 }
 
-.container .row {
-    display: grid;
-    justify-content: start;
-}
 
 #myData {
     display: grid;
@@ -26,6 +22,10 @@
     font-size: xx-large;
     font-family: auto;
     background-color: #bf80ff;
+    position: relative;
+    left: 324px;
+    width: 896px;
+    height: 395px;
 }
 
 #forecast .day {
@@ -47,4 +47,25 @@
     padding: 6px;
     box-shadow: 3px 3px 15px black;
     color: ghostwhite;
+}
+
+.searchbar {
+    display: block;
+    background-image: linear-gradient(144deg, #5B42F3, #0094eb 50%, #AF40FF);
+    margin: 15px;
+    width: 255px;
+    padding: 6px;
+    box-shadow: 3px 3px 15px black;
+    color: ghostwhite;
+}
+
+.row {
+    display: grid;
+    justify-content: start;
+    background-color: lightgrey;
+    position: absolute;
+    left: auto;
+    width: 332px;
+    height: 396px;
+    border: 5px solid blue;
 }

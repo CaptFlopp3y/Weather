@@ -3,7 +3,7 @@ var apiurl2 = "https://api.openweathermap.org/data/2.5/onecall?appid=16da2c71dd8
 var listEl = document.getElementById("myData")
 var listE2 = document.getElementById("forecast")
 var searchBtn = document.getElementById("search")
-
+var citysearch = document.getElementById("idk")
 
 var response = fetch(apiurl)
     .then(function (response) {
@@ -133,3 +133,25 @@ searchBtn.addEventListener("click", function () {
     cities.push(Cinput)
     localStorage.setItem("cities", JSON.stringify(cities))
 })
+
+window.addEventListener("load", (event) => {
+    let cities = []
+    let history = localStorage.getItem("cities")
+    if (
+        history != null
+    ) {
+        let data = JSON.parse(history)
+        cities = data
+    }
+    citysearch.innerHTML = " "
+    for (let i = 0; i < cities.length; i++) {
+        let city = document.createElement("div")
+        city.innerHTML = cities[i]
+        city.addEventListener(
+            'click', function () {
+                searchCity(cities[i])
+            }
+        )
+        citysearch.appendChild(city)
+    }
+});
