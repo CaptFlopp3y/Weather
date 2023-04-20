@@ -19,3 +19,11 @@ THEN I am presented with a 5-day forecast that displays the date, an icon repres
 WHEN I click on a city in the search history
 THEN I am again presented with current and future conditions for that city
 ```
+
+
+## Link to site
+[Click here to go to site](https://captflopp3y.github.io/Weather/)
+
+
+## Screen shot 
+![alt text](assets/Screenshotweather.png)
